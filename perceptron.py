@@ -31,21 +31,11 @@ def print_confusion_matrix(x_test,y_test,number_of_classes):
 
     norm_conf_matrix = np.zeros(np.shape(conf_matrix))
 
-    print('shape test')
-    print(norm_conf_matrix)
-    print('-----')
-
     for i in range(len(conf_matrix[:, 0])):
         for j in range(len(conf_matrix[0, :])):
             norm_conf_matrix[i, j] = conf_matrix[i, j] / class_amounts[i]
 
-    print('Confusion Matrix')
-    print(conf_matrix)
-
-    print('Class Amounts')
-    print(class_amounts)
-
-    print('Normalized Matrix')
+    print('Normalized Confusion Matrix')
     print(norm_conf_matrix)
 
 
@@ -98,5 +88,7 @@ model.fit(x_train, y_train,
           batch_size= 10)
 
 score = model.evaluate(x_test, y_test, batch_size= batch_size)
+
+print("\nThe final score is %.2f"% score[1])
 
 print_confusion_matrix(x_test,y_test,n_classes)
